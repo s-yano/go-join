@@ -13,6 +13,7 @@ func main() {
 
 	sep := flag.String("s", ",", "セパレータの指定")
 	ignore_blank := flag.Bool("b", true, "空白行の無視")
+	no_newline := flag.Bool("n", false, "最後にリターンを挿入しない")
 	flag.Parse()
 	args := flag.Args()
 
@@ -37,7 +38,9 @@ func main() {
 		fmt.Print(s, text)
 		s = *sep
 	}
-	fmt.Println()
+	if !(*no_newline) {
+		fmt.Println()
+	}
 
 	if err = scanner.Err(); err != nil {
 		fmt.Println(err)
